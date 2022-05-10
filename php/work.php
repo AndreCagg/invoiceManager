@@ -42,20 +42,20 @@
 
     echo "<form action='newRecord.php' method='post'>&nbsp;&nbsp;";
     while($stmt->fetch()){
-        echo "NUM. ORDINE<sup>*</sup> <input type='text' name='order' size='9' value='".$ordine."'>&nbsp;&nbsp;";
-        echo "NUM. FATT<sup>*</sup> <input type='numer' name='invoice' size='4' value='".$numFatt."'>&nbsp;&nbsp;";
-        echo "DATA<sup>*</sup> <input type='date' name='date' value='".$data."'>&nbsp;&nbsp;";
-        echo "DA FATTURARE <input type='number' name='toDebit' value='".$fatturare."'>&euro;&nbsp;&nbsp;";
-        echo "DA ACCREDITARE <input type='numer' name='toCredit' value='".$accreditato."'>&euro;&nbsp;&nbsp;<br><br>&nbsp;&nbsp;";
+        echo "NUM. ORDINE<sup>*</sup> <input type='text' name='order' size='9' value='".$ordine."'>,&nbsp;&nbsp;";
+        echo "NUM. FATT<sup>*</sup> <input type='numer' name='invoice' size='4' value='".$numFatt."'>,&nbsp;&nbsp;";
+        echo "DATA<sup>*</sup> <input type='date' name='date' value='".$data."'>,&nbsp;&nbsp;";
+        echo "DA FATTURARE <input type='number' name='toDebit' value='".$fatturare."'>&euro;,&nbsp;&nbsp;";
+        echo "ACCREDITATO <input type='numer' name='toCredit' value='".$accreditato."'>&euro;&nbsp;&nbsp;<button><a href='updateRecord.php?fornitore=$id&ordine=$ordine&fattura=$numFatt&data=$data&fatturare=$fatturare&accreditato=$accreditato'>MODIFICA</a></button><button><a href='deleteRecord.php?fornitore=$id&ordine=$ordine&fattura=$numFatt'>ELIMINA</a></button>,&nbsp;&nbsp;<br><br>&nbsp;&nbsp;";
     }
     $_SESSION["supplierID"]=$id;
 
     if(isset($_GET["new"])){
-        echo "NUM. ORDINE<sup>*</sup> <input type='text' name='order' size='9'>&nbsp;&nbsp;";
-        echo "NUM. FATT<sup>*</sup> <input type='numer' name='invoice' size='4'>&nbsp;&nbsp;";
-        echo "DATA<sup>*</sup> <input type='date' name='date'>&nbsp;&nbsp;";
-        echo "DA FATTURARE <input type='number' name='toDebit'>&euro;&nbsp;&nbsp;";
-        echo "DA ACCREDITARE <input type='numer' name='toCredit'>&euro;&nbsp;&nbsp;<br><br>&nbsp;&nbsp;";
+        echo "NUM. ORDINE<sup>*</sup> <input type='text' name='order' size='9'>,&nbsp;&nbsp;";
+        echo "NUM. FATT<sup>*</sup> <input type='numer' name='invoice' size='4'>,&nbsp;&nbsp;";
+        echo "DATA<sup>*</sup> <input type='date' name='date'>,&nbsp;&nbsp;";
+        echo "DA FATTURARE <input type='number' name='toDebit'>&euro;,&nbsp;&nbsp;";
+        echo "ACCREDITATO <input type='numer' name='toCredit'>&euro;&nbsp;&nbsp;,&nbsp;&nbsp;<br><br>&nbsp;&nbsp;";
     }
     echo "<input type='submit' value='SALVA + NUOVA RIGA'>";
     echo "</form>";
