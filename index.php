@@ -14,7 +14,7 @@
             }
             echo "<option value='0000'>-- ALTRO --</option>";
             echo "</select>";
-            echo "<br><br>NOME FORNITORE <input type='text'>";
+            echo "<br><br>NOME FORNITORE <input type='text' name='supplierName'>";
             echo "<br><br><input type='submit'>";
         echo "</fieldset>";
     echo "</form>";
