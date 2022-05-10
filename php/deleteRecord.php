@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $fornitore=$_GET["fornitore"];
     $ordine=$_GET["ordine"];
     $fattura=$_GET["fattura"];
@@ -16,5 +17,6 @@
     $stmt->close();
     $conn->close();
 
-    header("Location: work.php?new=1");
+    $_SESSION["last"]=date("d/m/Y H:i:s");
+    header("Location: work.php");
 ?>

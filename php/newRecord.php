@@ -25,6 +25,7 @@
         $stmt->close();
         $conn->close();
 
+        $_SESSION["last"]=date("d/m/Y H:i:s");
         header("Location: work.php?new=1");
     }else{
         echo "<h2>DEVI COMPILARE TUTTI I CAMPI OBBLIGATORI (*)</h2><br>";

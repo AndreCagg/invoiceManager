@@ -1,7 +1,9 @@
 <?php
     require_once("order.php");
     session_start();
+    $_SESSION["last"]=date("d/m/Y H:i:s");
 
+    echo "<title>WORKSPACE</title>";
     if(isset($_POST["supplier"])){
         $supplier=$_POST["supplier"];
         $name=$_POST["supplierName"];
@@ -26,6 +28,7 @@
 
         $stmt->close();
         $conn->close();
+        header("Location: ../");
     }else{
         $id=$supplier;
     }
@@ -41,25 +44,29 @@
     $stmt->bind_result($ordine,$numFatt,$data,$fatturare,$accreditato);
 
     echo "<form action='newRecord.php' method='post'>&nbsp;&nbsp;";
+    $b=false;
     while($stmt->fetch()){
-        echo "NUM. ORDINE<sup>*</sup> <input type='text' name='order' size='9' value='".$ordine."'>,&nbsp;&nbsp;";
-        echo "NUM. FATT<sup>*</sup> <input type='numer' name='invoice' size='4' value='".$numFatt."'>,&nbsp;&nbsp;";
+        $b=true;
+        echo "NUM. ORDINE<sup>*</sup> <input readonly='readonly' type='text' name='order' size='9' value='".$ordine."'>,&nbsp;&nbsp;";
+        echo "NUM. FATT<sup>*</sup> <input readonly='readonly' type='numer' name='invoice' size='4' value='".$numFatt."'>,&nbsp;&nbsp;";
         echo "DATA<sup>*</sup> <input type='date' name='date' value='".$data."'>,&nbsp;&nbsp;";
-        echo "DA FATTURARE <input type='number' name='toDebit' value='".$fatturare."'>&euro;,&nbsp;&nbsp;";
-        echo "ACCREDITATO <input type='numer' name='toCredit' value='".$accreditato."'>&euro;&nbsp;&nbsp;<button><a href='updateRecord.php?fornitore=$id&ordine=$ordine&fattura=$numFatt&data=$data&fatturare=$fatturare&accreditato=$accreditato'>MODIFICA</a></button><button><a href='deleteRecord.php?fornitore=$id&ordine=$ordine&fattura=$numFatt'>ELIMINA</a></button>,&nbsp;&nbsp;<br><br>&nbsp;&nbsp;";
+        echo "DA FATTURARE <input type='number' name='toDebit' value='".$fatturare."' min='0' max='100000' step='0.01'>&euro;,&nbsp;&nbsp;";
+        echo "ACCREDITATO <input type='number' name='toCredit' value='".$accreditato."' min='0' max='100000' step='0.01'>&euro;&nbsp;&nbsp;<button><a href='updateRecord.php?fornitore=$id&ordine=$ordine&fattura=$numFatt&data=$data&fatturare=$fatturare&accreditato=$accreditato'>MODIFICA</a></button>&nbsp;<button><a href='deleteRecord.php?fornitore=$id&ordine=$ordine&fattura=$numFatt'>ELIMINA</a></button>,&nbsp;&nbsp;<br><br>&nbsp;&nbsp;";
     }
     $_SESSION["supplierID"]=$id;
 
-    if(isset($_GET["new"])){
+    if(isset($_GET["new"]) || !$b){
         echo "NUM. ORDINE<sup>*</sup> <input type='text' name='order' size='9'>,&nbsp;&nbsp;";
         echo "NUM. FATT<sup>*</sup> <input type='numer' name='invoice' size='4'>,&nbsp;&nbsp;";
         echo "DATA<sup>*</sup> <input type='date' name='date'>,&nbsp;&nbsp;";
-        echo "DA FATTURARE <input type='number' name='toDebit'>&euro;,&nbsp;&nbsp;";
-        echo "ACCREDITATO <input type='numer' name='toCredit'>&euro;&nbsp;&nbsp;,&nbsp;&nbsp;<br><br>&nbsp;&nbsp;";
+        echo "DA FATTURARE <input type='number' name='toDebit' min='0' max='100000' step='0.01'>&euro;,&nbsp;&nbsp;";
+        echo "ACCREDITATO <input type='number' name='toCredit' min='0' max='100000' step='0.01'>&euro;&nbsp;&nbsp;,&nbsp;&nbsp;<br><br>&nbsp;&nbsp;";
     }
     echo "<input type='submit' value='SALVA + NUOVA RIGA'>";
     echo "</form>";
 
     $stmt->close();
     $conn->close();
+    echo "ULTIME MODIFICHE SALVATE ALLE: <b>".$_SESSION["last"]."</b><br><br>";
+    echo "<button><a href='../'>ESCI</a></button>";
 ?>
