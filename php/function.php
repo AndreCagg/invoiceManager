@@ -30,4 +30,11 @@
         return $nome;
     }
 
+    function printErr($code){
+        echo "<h2>ERROR CODE: ".$code.", LA LICENZA POTREBBE ESSERE SCADUTA O INATTIVA</h2>";
+        echo "<title>!! ERROR !!</title>";
+        echo "<p><i>Questo inconventiente potrebbe essere dovuto ad un semplice problema tecnico,<br>
+        al mancato rinnovo della licenza o al ban della societ&agrave dai registri<br></i></p>";
+    }
+
 ?>

@@ -1,12 +1,13 @@
 <?php
     echo "<link rel='icon' type='image/x-icon' href='../others/invoiceIcon.ico'>";
     echo "<title>MODIFICA</title>";
-    session_start();
-    if(!$_SESSION["active"]){
-        header("Location: ../");
-    }
-    
+
+    require_once("config.php");
     require_once("function.php");
+    $response=json_decode(file_get_contents("http://$ip:$port/PERSONALE/API/invoiceManager?code=10&sn=".$SN),true);
+
+    if($response["code"]=="100" && $response["mex"]["active"]){
+    
     //estrazione dati
     echo "<form action='save.php' method='post'>";
         echo "<fieldset>";
@@ -21,4 +22,8 @@
         echo "</fildset>";
     echo "</form>";
     $_SESSION["last"]=date("d/m/Y H:i:s");
+    }else{
+        printErr($response["code"]);
+        echo "<br><button><a href='../'>ESCI</a></button>";
+    }
 ?>
