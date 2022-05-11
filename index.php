@@ -26,8 +26,8 @@
                 echo "<br><br><input type='submit'>";
             echo "</fieldset>";
         echo "</form>";
+        echo "<br>MATRICOLA: <p style='letter-spacing: 5px; display:inline;'><b>".$SN."</b></p>";
     }else{
-        printErr($response["code"]);
+        printErr($response["code"],"others/locked.png","css/style.css","php/config.php");
     }
-    echo "<br>MATRICOLA: <p style='letter-spacing: 5px; display:inline;'><b>".$SN."</b></p>";
 ?>

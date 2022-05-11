@@ -1,0 +1,16 @@
+.general{
+    width: 700px;
+    margin: auto;
+    margin-top: 100px;
+    text-align: center;
+}
+
+@font-face {
+    font-family: "Square Peg";
+    src: url(../others/font/SquarePeg-Regular.ttf);
+}
+
+.sign{
+    font-family: "Square Peg", cursive;
+    font-size: 25px;
+}

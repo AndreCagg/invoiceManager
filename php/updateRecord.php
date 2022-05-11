@@ -23,7 +23,7 @@
     echo "</form>";
     $_SESSION["last"]=date("d/m/Y H:i:s");
     }else{
-        printErr($response["code"]);
+        pprintErr($response["code"],"../others/locked.png","../css/style.css","config.php");
         echo "<br><button><a href='../'>ESCI</a></button>";
     }
 ?>

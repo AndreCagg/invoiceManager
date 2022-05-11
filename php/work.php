@@ -85,9 +85,9 @@
         $stmt->close();
         $conn->close();
         echo "ULTIME MODIFICHE SALVATE ALLE: <b>".$_SESSION["last"]."</b>";
+        echo "<br>MATRICOLA: <p style='letter-spacing: 5px; display:inline;'><b>".$SN."</b></p><br><br>";
     }else{
-        printErr($response["code"]);
+        printErr($response["code"],"../others/locked.png","../css/style.css","config.php");
     }
-    echo "<br>MATRICOLA: <p style='letter-spacing: 5px; display:inline;'><b>".$SN."</b></p><br><br>";
     echo "<button><a href='../'>ESCI</a></button>";
 ?>
