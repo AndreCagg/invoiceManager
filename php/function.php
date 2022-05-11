@@ -16,25 +16,21 @@
         return $rows;
     }
 
-    function getDoc($fornitore,$fattura,$ordine){
+    function getWorkSupplier($id){
         $conn=new mysqli("localhost","root","","invoicemanager");
-        $query="SELECT o.ordine,o.numero,o.day,o.fatturare,o.accreditato FROM ordini AS o,fornitori AS f,fornitori_ordini AS fo WHERE f.id=? AND fo.id_fattura=? AND fo.id_ordine=? AND f.id=fo.id_fornitore AND fo.id_ordine=o.ordine AND fo.id_fattura=o.numero";
-        $stmt=$conn->prepare($query);
-        $stmt->bind_param("isi",$fornitore,$fattura,$ordine);
+        $stmt=$conn->prepare("SELECT nome FROM fornitori WHERE id=?");
+        $stmt->bind_param("i",$id);
         $stmt->execute();
-        $stmt->bind_result($ordine,$numFatt,$data,$fatturare,$accreditato);
+        $stmt->bind_result($nome);
+
+        while($stmt->fetch()){
+            $retVal=$nome;
+        }
 
         $stmt->close();
         $conn->close();
 
-        $retVal=array("ord"=>$ordine,
-        "fattura"=>$numFatt,
-        "data"=>$data,
-        "fatturare"=>$fatturare,
-        "accreditato"=>$accreditato);
-
-        print_r($retVal);
-        return $retVal;
+        return $nome;
     }
 
 ?>

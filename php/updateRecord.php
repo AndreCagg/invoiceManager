@@ -1,4 +1,6 @@
 <?php
+    echo "<link rel='icon' type='image/x-icon' href='../others/invoiceIcon.ico'>";
+    echo "<title>MODIFICA</title>";
     session_start();
     require_once("function.php");
     //estrazione dati
@@ -10,6 +12,7 @@
             echo "DATA<sup>*</sup> <input type='date' name='date' value='".$_GET["data"]."'>,&nbsp;&nbsp;";
             echo "DA FATTURARE <input type='number' name='toDebit' value='".$_GET["fatturare"]."' min='0' max='100000' step='0.01'>&euro;,&nbsp;&nbsp;";
             echo "ACCREDITATO <input type='number' name='toCredit' value='".$_GET["accreditato"]."' min='0' max='100000' step='0.01'>&euro;&nbsp;&nbsp;<br><br>";
+            echo "<button><a href='work.php'>INDIETRO</a></button>&nbsp;";
             echo "<input type='submit' value='MODIFICA'>";
         echo "</fildset>";
     echo "</form>";

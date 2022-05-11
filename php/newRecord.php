@@ -10,16 +10,10 @@
     $toCredit=$_POST["toCredit"];
 
     if(!empty($numOrd) && !empty($fattura) && $date!="0000-00-00"){
-
-        $query="INSERT INTO ordini (ordine,numero,day,fatturare,accreditato) VALUES (?,?,?,?,?); -- WHERE NOT EXISTS (SELECT ordine FROM ordini WHERE ordine=? AND numero=?)";
+        $id=$_SESSION["supplier"];
+        $query="INSERT INTO ordini (fornitore,ordine,numero,day,fatturare,accreditato) VALUES (?,?,?,?,?,?)";
         $stmt=$conn->prepare($query);
-        $stmt->bind_param("sisdd",$numOrd,$fattura,$date,$toDebit,$toCredit);
-        $stmt->execute();
-
-        //tabella convenzionale
-        $supplierID=$_SESSION["supplierID"];
-        $stmt=$conn->prepare("INSERT INTO fornitori_ordini (id_fornitore,id_ordine,id_fattura) VALUES (?,?,?); -- WHERE NOT EXISTS (SELECT id_fornitore FROM fornitori_ordini WHERE id_fornitore=? AND id_ordine=? AND id_fattura=?)");
-        $stmt->bind_param("isi",$supplierID,$numOrd,$fattura);
+        $stmt->bind_param("isisdd",$id,$numOrd,$fattura,$date,$toDebit,$toCredit);
         $stmt->execute();
 
         $stmt->close();

@@ -2,6 +2,7 @@
     require "php/function.php";
 
     echo "<title>SELEZIONA FORNITORE</title>";
+    echo "<link rel='icon' type='image/x-icon' href='others/invoiceIcon.ico'>";
 
     echo "<form action='php/work.php' method='post'>";
         echo "<fieldset>";
