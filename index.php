@@ -1,5 +1,7 @@
 <?php
     require "php/function.php";
+    require_once("php/fornitore.php");
+
 
     echo "<title>SELEZIONA FORNITORE</title>";
     echo "<link rel='icon' type='image/x-icon' href='others/invoiceIcon.ico'>";

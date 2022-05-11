@@ -1,8 +1,10 @@
 <?php
 
     //TODO: CREARE FUNZIONI, REPLACE VIRGOLA NUMERI, GESTIONE ERRORI DB, OTTIMIZZAZIONE CODICE
-    require_once("order.php");
+    //require_once("order.php");
     require_once("function.php");
+    require_once("fornitore.php");
+
     session_start();
     if(!isset($_SESSION["last"])){
         $_SESSION["last"]=date("d/m/Y H:i:s");
