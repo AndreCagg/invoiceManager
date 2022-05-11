@@ -1,5 +1,9 @@
 <?php
     session_start();
+    if(!$_SESSION["active"]){
+        header("Location: ../");
+    }
+    
     $conn=new mysqli("localhost","root","","invoicemanager");
 
     //tabella ordini

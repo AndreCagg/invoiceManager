@@ -2,6 +2,10 @@
     echo "<link rel='icon' type='image/x-icon' href='../others/invoiceIcon.ico'>";
     echo "<title>MODIFICA</title>";
     session_start();
+    if(!$_SESSION["active"]){
+        header("Location: ../");
+    }
+    
     require_once("function.php");
     //estrazione dati
     echo "<form action='save.php' method='post'>";

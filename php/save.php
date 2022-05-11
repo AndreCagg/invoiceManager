@@ -1,5 +1,9 @@
 <?php
     session_start();
+    if(!$_SESSION["active"]){
+        header("Location: ../");
+    }
+    
     $day=$_POST["date"];
     $fatturare=$_POST["toDebit"];
     $accreditato=$_POST["toCredit"];

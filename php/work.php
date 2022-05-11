@@ -2,10 +2,14 @@
 
     //TODO: CREARE FUNZIONI, REPLACE VIRGOLA NUMERI, GESTIONE ERRORI DB, OTTIMIZZAZIONE CODICE
     //require_once("order.php");
+    session_start();
+    if(!$_SESSION["active"]){
+        header("Location: ../");
+    }
+
     require_once("function.php");
     require_once("fornitore.php");
 
-    session_start();
     if(!isset($_SESSION["last"])){
         $_SESSION["last"]=date("d/m/Y H:i:s");
     }
@@ -79,6 +83,7 @@
 
     $stmt->close();
     $conn->close();
-    echo "ULTIME MODIFICHE SALVATE ALLE: <b>".$_SESSION["last"]."</b><br><br>";
+    echo "ULTIME MODIFICHE SALVATE ALLE: <b>".$_SESSION["last"]."</b>";
+    echo "<br>MATRICOLA: <p style='letter-spacing: 5px; display:inline;'><b>".$_SESSION["productID"]."</b></p><br><br>";
     echo "<button><a href='../'>ESCI</a></button>";
 ?>
